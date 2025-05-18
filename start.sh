@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-# System vorbereiten
-apt-get update && apt-get install -y git ffmpeg sox
+apt-get update && apt-get install -y bash git ffmpeg sox && \
+bash -c "
 
 # Coqui TTS klonen & installieren
 cd /workspace
