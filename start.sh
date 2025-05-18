@@ -48,4 +48,4 @@ echo "=== Starte Web-UI ==="
 tts-server --model_name tts_models/de/thorsten/tacotron2-DDC \
            --vocoder_name vocoder_models/de/thorsten/hifigan_v1 \
            --use_cuda true \
-           --port 7860
+           --port 5002
