@@ -1,23 +1,19 @@
-echo "=== Installing packages ==="
+#!/bin/sh
+
+echo "=== Systempakete installieren ==="
 apt-get update
-apt-get install -y git ffmpeg sox
+apt-get install -y git ffmpeg sox espeak-ng
 
-echo "=== Cloning Coqui ==="
-cd /workspace
-git clone https://github.com/coqui-ai/TTS.git
-cd TTS
+echo "=== Python-Abhängigkeiten installieren ==="
+# Kompatible Versionen installieren
+pip install torch==2.4.1 torchvision==0.19.1+cu124 torchaudio==2.4.1+cu124 --index-url https://download.pytorch.org/whl/cu124
+pip install pandas==1.5.3
+pip install TTS==0.21.1 --no-deps --ignore-installed blinker
+pip install matplotlib librosa unidecode
 
-echo "=== Installing Python dependencies ==="
-pip install -e .
-pip install matplotlib pandas librosa unidecode
+echo "=== TTS-Testlauf starten ==="
+tts --text "Testausgabe nach automatischem Setup mit Thorsten Stimme" \
+    --model_name tts_models/de/thorsten/tacotron2-DDC \
+    --out_path /workspace/test.wav
 
-echo "=== Downloading model ==="
-python3 -m TTS.api.cli --model_name tts_models/de/thorsten/tacotron2-DDC --download
-
-echo "=== Generating test.wav ==="
-python3 -m TTS.api.cli \
-  --text "Hallo, ich teste Coqui TTS auf RunPod." \
-  --model_name tts_models/de/thorsten/tacotron2-DDC \
-  --out_path /workspace/test.wav
-
-echo "=== DONE ==="
+echo "=== FERTIG: test.wav ist erzeugt ==="
