@@ -7,8 +7,9 @@ cd TTS
 pip install -e .
 pip install matplotlib pandas librosa unidecode
 
-tts --model_name tts_models/de/thorsten/tacotron2-DDC --download
+python3 -m TTS.api.cli --model_name tts_models/de/thorsten/tacotron2-DDC --download
 
-tts --text "Hallo, ich teste Coqui TTS auf RunPod." \
-    --model_name tts_models/de/thorsten/tacotron2-DDC \
-    --out_path /workspace/test.wav
+python3 -m TTS.api.cli \
+  --text "Hallo, ich teste Coqui TTS auf RunPod." \
+  --model_name tts_models/de/thorsten/tacotron2-DDC \
+  --out_path /workspace/test.wav
