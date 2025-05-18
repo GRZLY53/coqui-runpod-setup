@@ -17,3 +17,4 @@ tts --text "Testausgabe nach automatischem Setup mit Thorsten Stimme" \
     --out_path /workspace/test.wav
 
 echo "=== FERTIG: test.wav ist erzeugt ==="
+tts-server
